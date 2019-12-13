@@ -230,25 +230,7 @@ function ShowText(){
 }
 export default ShowText;
 
-
-//然后是改变文字颜色的按钮组件Buttons
-import React,{useContext} from 'react';
-import {  UPDATE_COLOR, ColorContext } from './Color';
-
-
-function Buttons(){
-    const {dispatch}=useContext(ColorContext)
-    return (
-        <div>
-            <button onClick={()=>{dispatch({type:UPDATE_COLOR,color:"red"})}}>红色</button>
-            <button onClick={()=>{dispatch({type:UPDATE_COLOR,color:"blue"})}}>蓝色</button>
-            <button onClick={()=>{dispatch({type:UPDATE_COLOR,color:"orange"})}}>橙色</button>
-        </div>
-    )
-}
-export default Buttons;
-
-//最后是对这些组件进行包裹的color分享组件
+// color组件（里面包含Color，以及ColorContext）
 import React, { createContext,useReducer} from 'react';
 
 export const ColorContext=createContext({});
@@ -271,6 +253,26 @@ export const Color = props=>{
            </ColorContext.Provider>
        )
 } 
+
+
+//然后是改变文字颜色的按钮组件Buttons
+import React,{useContext} from 'react';
+import {  UPDATE_COLOR, ColorContext } from './Color';
+
+
+function Buttons(){
+    const {dispatch}=useContext(ColorContext)
+    return (
+        <div>
+            <button onClick={()=>{dispatch({type:UPDATE_COLOR,color:"red"})}}>红色</button>
+            <button onClick={()=>{dispatch({type:UPDATE_COLOR,color:"blue"})}}>蓝色</button>
+            <button onClick={()=>{dispatch({type:UPDATE_COLOR,color:"orange"})}}>橙色</button>
+        </div>
+    )
+}
+export default Buttons;
+
+
 ```
 
 * 大体上的实现就是通过useContext去将color还有dispatch传递给子组件。
