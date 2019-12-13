@@ -248,14 +248,11 @@ function Buttons(){
 }
 export default Buttons;
 
-
 //最后是对这些组件进行包裹的color分享组件
 import React, { createContext,useReducer} from 'react';
 
 export const ColorContext=createContext({});
-
 export const UPDATE_COLOR="UPDATE_COLOR";
-
 const reducer=(state,action)=>{
     switch(action.type){
         case "UPDATE_COLOR":
