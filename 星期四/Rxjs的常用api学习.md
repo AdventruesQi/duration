@@ -2,6 +2,10 @@
 
 
 
+Rxjs中文的查询api文档：https://www.bookstack.cn/read/Learn-RxJS-zh/operators-combination-README.md
+
+Redux-observable文档：https://www.bookstack.cn/read/redux-observable-cn/docs-basics-Epics.md
+
 这里主要介绍一些Rxjs常用api的用法，基础的概念还得之前师尊的react系列课程的文档：
 
 观看方法：
@@ -223,4 +227,6 @@ export class RxjsDemoComponent implements OnInit, OnDestroy {
     }
 }
 ```
+
+
 
