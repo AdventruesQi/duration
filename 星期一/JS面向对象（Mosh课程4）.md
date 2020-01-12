@@ -204,7 +204,7 @@ class Shape{
 
 class Circle extends Shape{
 	move(){
-		super().move();
+		super.move();
 		console.log("这个是Circle")
 	}
 }
