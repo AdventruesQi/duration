@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手写Promise</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    const PENDING="pending";
+    const RESOLVED="resolved";
+    const REJECTED="rejected";
+
+    function Mypromise(fn){
+        const that=this;
+        that.state=PENDING;
+        that.value=null;
+        that.resolvedCallBack=[];
+        that.rejectedCallBack=[];
+
+        function resolve(value){
+            if(that.state==PENDING){
+                that.state=RESOLVED;
+                that.value=value;
+                that.resolvedCallBack.map(cb=>cb(that.value));
+            }
+        }
+        function reject(value){
+            if(that.state=PENDING){
+                that.state=REJECTED;
+                that.value=value;
+                that.rejectedCallBack.map(cb=>cb(that.value));
+            }
+        }
+
+        try {
+            fn(resolve,reject);
+        } catch (error) {
+            reject(error);
+        }
+
+    }
+    Mypromise.prototype.then=function(onFulfilled,onRejected){
+        const that=this;
+        onFulfilled = typeof onFulfilled === "function" ? onFulfilled : c=>c;
+        onRejected  = typeof onRejected === "function" ? onRejected : err=>{throw err};
+        if(that.state===PENDING){
+            that.resolvedCallBack.push(onFulfilled);
+            that.rejectedCallBack.push(onRejected);
+        }
+
+        if(that.state===RESOLVED){
+            onFulfilled(that.value);
+        }
+
+        if(that.state===REJECTED){
+            onRejected(that.value);
+        }
+    }
+
+
+var go="mfsdfsdf";
+</script>
+
+</html>
